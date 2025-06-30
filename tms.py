@@ -1,12 +1,19 @@
+
+def manageMenu():
+    pass
+def menu():
+    pass
+
+
 class customer:
+    next_id=1000
     def __init__(self):
-        next_id=1000
         self.cusId='c'+next_id
         next_id+=1
         self.name=''
         self.age=''
         self.gender=''
-        self.adress=''
+        self.address=''
         self.mobile=''
         self.fileContents=''
         
@@ -35,7 +42,7 @@ class customer:
                 print("Please enter f or m only!")
 
         adr=input('Enter Customer address:')
-        self.adress=adr
+        self.address=adr
         while True:
             try:
                 mob=int(input('Enter Customer mobile number:'))
@@ -88,7 +95,7 @@ class cabs:
             except ValueError:
                 print('Please enter a numeric value only!')
             
-        if self.choice=='1':
+        if self.choice==1:
             self.cabCost=self.kilometers*30
             print(f'Your tour will cost Rs.{self.cabCost} for a standard cab')
 
@@ -103,7 +110,7 @@ class cabs:
                     print('Please enter 1 or 2 only!')
 
             if hirecab==1:
-                print('You have successfully hired the standard cab, go to the main menu to reciev your receipt')
+                print('You have successfully hired the standard cab, go to the main menu to recieve your receipt')
             else:
                 self.cabDetails()
 
@@ -122,14 +129,23 @@ class cabs:
                     print('Please enter 1 or 2 only!')
             
             
-            if hirecab==1:
-                print('You have successfully hired the luxury cab, go to the main menu to reciev your receipt')
+            if hirecab=='1':
+                print('You have successfully hired the luxury cab, go to the main menu to recieve your receipt')
             else:
                 self.cabDetails()
 
             k=input(('Enter any key to go to the main menu'))
             if k=='a':
-                manageMenu()
+                menu()
             else:
-                manageMenu
+                menu()
+
+class booking:
+    def __init__(self):
+        self.hotelChoice=''
+        self.pack=''
+        self.hotelCost=''
+        
+        
+                
 
