@@ -6,6 +6,7 @@ class customer:
         self.gender=''
         self.adress=''
         self.mobile=''
+        self.fileContents=''
         
     def getDetails(self):
         cid=input('Enter Customer ID:')
@@ -46,4 +47,15 @@ class customer:
         with open('Old_customers.txt','w+') as f:
             f.write(f'Customer ID:{self.cusId}\nCustomer Name:{self.name}\nCustomer Age:{self.age}\nGender:{self.gender}\nMobile Number:{self.mobile}')   
 
-    
+    def showDetails(self):
+        try:
+            f=open('Old_customers.txt','r+')
+            self.fileContents=f.read()
+            f.close()
+        except FileNotFoundError as fne:
+            self.fileContents='none'
+            print('File Not found')
+        print(self.fileContents)
+        
+
+
