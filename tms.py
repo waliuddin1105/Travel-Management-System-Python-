@@ -1,6 +1,8 @@
 class customer:
     def __init__(self):
-        self.cusId=''
+        next_id=1000
+        self.cusId='c'+next_id
+        next_id+=1
         self.name=''
         self.age=''
         self.gender=''
@@ -9,8 +11,6 @@ class customer:
         self.fileContents=''
         
     def getDetails(self):
-        cid=input('Enter Customer ID:')
-        self.cusId=cid
         n=input('Enter Customer name:')
         self.name=n
         while True:
@@ -56,6 +56,13 @@ class customer:
             self.fileContents='none'
             print('File Not found')
         print(self.fileContents)
+
+class cabs:
+    def __init__(self):
+        self.kilometers=''
+        self.cabCost=''
+        
+    
         
 
 
