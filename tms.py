@@ -61,8 +61,44 @@ class cabs:
     def __init__(self):
         self.kilometers=''
         self.cabCost=''
-        
-    
-        
+        self.choice=''
 
+    def cabDetails(self):
+        print('---------------Metro Cabs---------------')
+        print("1. Rent a Standard Cab- Rs.30 per KM")
+        print("2. Rent a Luxury Cab- Rs.50 per KM")
+        print('To calculate the total cost of your journey!')
+        print('--------------------------------------------------')
+        while True:
+            try:
+                c=int(input('Enter which type of cab do you want to use:'))
+                if c!='1' and c!='2':
+                    raise Exception
+                else:
+                    self.choice=c
+                    break
+            except Exception:
+                print('Please enter a valid choice!')
+
+        while True:
+            try:
+                k=int(input('How many kilometers do you want to travel:'))
+                self.kilometers=k
+                break
+            except ValueError:
+                print('Please enter a numeric value only!')
+            
+        if self.choice=='1':
+            self.cabCost=self.kilometers*30
+            print(f'Your tour will cost Rs.{self.cabCost} for a standard cab')
+            hirecab=input("Press 1 to hire this cab or\nPress 2 to hire another cab")
+
+            while True:
+                try:
+                    if hirecab!='1' and hirecab!='2':
+                        raise Exception
+                    else:
+                        break
+                except Exception:
+                    print('Please enter 1 or 2 only!')
 
