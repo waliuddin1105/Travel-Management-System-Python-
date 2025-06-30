@@ -1,3 +1,4 @@
+import os as o
 
 def manageMenu():
     pass
@@ -146,6 +147,43 @@ class booking:
         self.pack=''
         self.hotelCost=''
         
-        
+    
+    def hotels(self):
+        hotels=['Avari Towers','Pearl Continental','Beach Luxury Hotel']
+        i='1'
+        for h in hotels:
+            print(i+'.'+h)
+        c=input('Select which hotel do you wanna book or check details of\nOr press any other key to go back to the main menu')
+        self.hotelChoice=c
+
+        if(self.hotelChoice=='1'):
+            print("\t\t\t\tWELCOME TO AVARI TOWERS!\nThe highest rated 5 star hotel in Karachi!\nEnjoy the food, the gym, the pool, the garden, luxury suites and much more with Avari Towers")
+            print('Packages offered by Avari Towers:')
+            print("1.Standard Pack")
+            print("All the basic facilities you need\nPrice:Rs 50,000.00 per night")
+            print("2.Premium Pack")
+            print("Enjoy the Premium lifestyle!\nPrice:Rs 100,000.00 per night")
+            print("3.Luxury Pack")
+            print("Enjoy the Luxury at Avari Towers:\nPrice:Rs 160,000.00 per night")
+
+            p=input("\nEnter which pack you want to avail\nOr press any other key to go back:\n")
+            self.pack=p
+
+            if(self.pack=='1'):
+                self.hotelCost=50000.00
+                print("You have succesfully availed the Standard package at the Avari Towers!")
+                print("You can get your receipt from the main menu:")
+            elif(self.pack=='2'):
+                self.hotelCost=50000.00
+                print("You have succesfully availed the Premium package at the Avari Towers!")
+                print("You can get your receipt from the main menu:")
+            elif(self.pack=='3'):
+                self.hotelCost=50000.00
+                print("You have succesfully availed the Luxury package at the Avari Towers!")
+                print("You can get your receipt from the main menu:")
+            else:
+                o.system('cls')
+                self.hotels()
+           
                 
 
