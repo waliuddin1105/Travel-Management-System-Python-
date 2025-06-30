@@ -82,14 +82,33 @@ class cabs:
 
         while True:
             try:
-                k=int(input('How many kilometers do you want to travel:'))
-                self.kilometers=k
+                km=int(input('How many kilometers do you want to travel:'))
+                self.kilometers=km
                 break
             except ValueError:
                 print('Please enter a numeric value only!')
             
         if self.choice=='1':
             self.cabCost=self.kilometers*30
+            print(f'Your tour will cost Rs.{self.cabCost} for a standard cab')
+
+            while True:
+                try:
+                    hirecab=input("Press 1 to hire this cab or\nPress 2 to hire another cab")
+                    if hirecab!='1' and hirecab!='2':
+                        raise Exception
+                    else:
+                        break
+                except Exception:
+                    print('Please enter 1 or 2 only!')
+
+            if hirecab==1:
+                print('You have successfully hired the standard cab, go to the main menu to reciev your receipt')
+            else:
+                self.cabDetails()
+
+        elif self.choice==2:
+            self.cabCost=self.kilometers*50
             print(f'Your tour will cost Rs.{self.cabCost} for a standard cab')
             hirecab=input("Press 1 to hire this cab or\nPress 2 to hire another cab")
 
@@ -101,4 +120,16 @@ class cabs:
                         break
                 except Exception:
                     print('Please enter 1 or 2 only!')
+            
+            
+            if hirecab==1:
+                print('You have successfully hired the luxury cab, go to the main menu to reciev your receipt')
+            else:
+                self.cabDetails()
+
+            k=input(('Enter any key to go to the main menu'))
+            if k=='a':
+                manageMenu()
+            else:
+                manageMenu
 
