@@ -158,7 +158,7 @@ class booking:
 
         if(self.hotelChoice=='1'):
             print("\t\t\t\tWELCOME TO AVARI TOWERS!\nThe highest rated 5 star hotel in Karachi!\nEnjoy the food, the gym, the pool, the garden, luxury suites and much more with Avari Towers")
-            print('Packages offered by Avari Towers:')
+            print('Packages offered by Avari Towers:\n')
             print("1.Standard Pack")
             print("All the basic facilities you need\nPrice:Rs 50,000.00 per night")
             print("2.Premium Pack")
@@ -184,6 +184,73 @@ class booking:
             else:
                 o.system('cls')
                 self.hotels()
-           
-                
+            
+            k=input('Press any key to return to the main menu:')
+            if k=='a':
+                menu()
+            else:
+                menu()
 
+        elif(self.hotelChoice=='2'):
+            print("\t\t\t\tWELCOME TO PEARL CONTINENTAL!\nThe HIGHEST rated Luxury and event hotel in Karachi!\nEnjoy the ambiance, the feel, the restaurants, the pools , fitness centers, Family rooms and much more with Pearl Continental")
+            print('Packages offered by Pearl Continental:\n')
+            print("1.Vacation Pack")
+            print("Get the full vacation experience\nPrice:Rs 40,000.00 per night")
+            print("2.Family Pack")
+            print("The total family package\nPrice:Rs 60,000.00 per night")
+            print("3.Event Pack")
+            print("The package for the best event experience!\nPrice:Rs 140,000.00 per night")
+
+            p=input("\nEnter which pack you want to avail\nOr press any other key to go back:\n")
+            self.pack=p
+
+            if(self.pack=='1'):
+                self.hotelCost=40000.00
+                print("You have succesfully availed the Vacation package at Pearl continental!")
+                print("You can get your receipt from the main menu:")
+            elif(self.pack=='2'):
+                self.hotelCost=60000.00
+                print("You have succesfully availed the Family package at Pearl continental!")
+                print("You can get your receipt from the main menu:")
+            elif(self.pack=='3'):
+                self.hotelCost=140000.00
+                print("You have succesfully availed the Event package at Pearl continental!")
+                print("You can get your receipt from the main menu:")
+            else:
+                o.system('cls')
+                self.hotels()
+            
+            k=input('Press any key to return to the main menu:')
+            if k=='a':
+                menu()
+            else:
+                menu()
+
+        elif(self.hotelChoice=='3'):
+            print('\t\t\t\tWELCOME TO Beach Luxury Hotel!\nSet near the mangroves at the coast of the Arabian Sea, get ready for an adventure like never before at the Beach Luxury Hotel!')
+            print('Packages offered by Beach Luxury Hotel:\n')
+            print("1.Beach Pack")
+            print("Book your own hut at the beach and enjoy the wonders\nPrice:Rs 55,000.00 per day")
+            print("2.Special Pack")
+            print("Get the full access to all the facilities\nPrice:Rs 90,000.00 per day")
+
+            p=input("\nEnter which pack you want to avail\nOr press any other key to go back:\n")
+            self.pack=p
+
+            if(self.pack=='1'):
+                self.hotelCost=55000.00
+                print("You have succesfully availed the Vacation package at the Beach Luxury Hotel")
+                print("You can get your receipt from the main menu:")
+            elif(self.pack=='2'):
+                self.hotelCost=90000.00
+                print("You have succesfully availed the Special Package at the Beach Luxury Hotel!")
+                print("You can get your receipt from the main menu:")
+            else:
+                o.system('cls')
+                self.hotels()
+            
+            k=input('Press any key to return to the main menu:')
+            if k=='a':
+                menu()
+            else:
+                menu()
