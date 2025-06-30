@@ -9,8 +9,8 @@ def menu():
 class customer:
     next_id=1000
     def __init__(self):
-        self.cusId='c'+next_id
-        next_id+=1
+        self.cusId='c'+str(customer.next_id)
+        customer.next_id+=1
         self.name=''
         self.age=''
         self.gender=''
@@ -52,7 +52,7 @@ class customer:
             except ValueError as v:
                 print("Please enter a number only")     
 
-        with open('Old_customers.txt','w+') as f:
+        with open('Old_customers.txt','a+') as f:
             f.write(f'Customer ID:{self.cusId}\nCustomer Name:{self.name}\nCustomer Age:{self.age}\nGender:{self.gender}\nMobile Number:{self.mobile}')   
 
     def showDetails(self):
@@ -80,7 +80,7 @@ class cabs:
         while True:
             try:
                 c=int(input('Enter which type of cab do you want to use:'))
-                if c!='1' and c!='2':
+                if c!=1 and c!=2:
                     raise Exception
                 else:
                     self.choice=c
@@ -110,12 +110,12 @@ class cabs:
                 except Exception:
                     print('Please enter 1 or 2 only!')
 
-            if hirecab==1:
+            if hirecab=='1':
                 print('You have successfully hired the standard cab, go to the main menu to recieve your receipt')
             else:
                 self.cabDetails()
 
-        elif self.choice==2:
+        elif self.choice=='2':
             self.cabCost=self.kilometers*50
             print(f'Your tour will cost Rs.{self.cabCost} for a standard cab')
             hirecab=input("Press 1 to hire this cab or\nPress 2 to hire another cab")
@@ -174,11 +174,11 @@ class booking:
                 print("You have succesfully availed the Standard package at the Avari Towers!")
                 print("You can get your receipt from the main menu:")
             elif(self.pack=='2'):
-                self.hotelCost=50000.00
+                self.hotelCost=100000.00
                 print("You have succesfully availed the Premium package at the Avari Towers!")
                 print("You can get your receipt from the main menu:")
             elif(self.pack=='3'):
-                self.hotelCost=50000.00
+                self.hotelCost=160000.00
                 print("You have succesfully availed the Luxury package at the Avari Towers!")
                 print("You can get your receipt from the main menu:")
             else:
@@ -254,3 +254,30 @@ class booking:
                 menu()
             else:
                 menu()
+
+
+class charges(customer,cabs,booking):
+    def __init__(self):
+        pass
+    def printBill(self):
+        with open('receipt.txt','a+') as f:
+            f.write("\t\t\t\tPak Travelers")
+            f.write("--------------------------RECEIPT-------------------------------")
+            f.write("-----------------------------------------------------------------")
+            
+            f.write('Customer ID:',self.cusId)
+            f.write('DESCRIPTION\t\t TOTAL')
+            f.write('Hotel Cost\t\t ',self.hotelCost)
+            f.write('Cab travel cost\t\t',self.cabCost)
+            f.write("-----------------------------------------------------------------")
+            f.write('Total Expenses\t\t',self.hotelCost+self.cabCost)
+        
+    def displayBill(self):
+        try:
+            f=open('receipt.txt','r+')
+            contents=f.read()
+            f.close()
+        except FileNotFoundError:
+            print('Error file not found')
+            contents='none'
+        print(contents)
