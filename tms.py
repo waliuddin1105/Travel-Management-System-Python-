@@ -76,6 +76,7 @@ class cabs:
         self.choice=''
 
     def cabDetails(self):
+        me=menus()
         print('---------------Metro Cabs---------------')
         print("1. Rent a Standard Cab- Rs.30 per KM")
         print("2. Rent a Luxury Cab- Rs.50 per KM")
@@ -83,7 +84,7 @@ class cabs:
         print('--------------------------------------------------')
         while True:
             try:
-                c=int(input('Enter which type of cab do you want to use:'))
+                c=int(input('Enter which type of cab do you want to use: '))
                 if c!=1 and c!=2:
                     raise Exception
                 else:
@@ -94,7 +95,7 @@ class cabs:
 
         while True:
             try:
-                km=int(input('How many kilometers do you want to travel:'))
+                km=int(input('How many kilometers do you want to travel: '))
                 self.kilometers=km
                 break
             except ValueError:
@@ -106,7 +107,7 @@ class cabs:
 
             while True:
                 try:
-                    hirecab=input("Press 1 to hire this cab or\nPress 2 to hire another cab")
+                    hirecab=input("Press 1 to hire this cab or\nPress 2 to hire another cab:\n")
                     if hirecab!='1' and hirecab!='2':
                         raise Exception
                     else:
@@ -122,7 +123,7 @@ class cabs:
         elif self.choice==2:
             self.cabCost=self.kilometers*50
             print(f'Your tour will cost Rs.{self.cabCost} for a standard cab')
-            hirecab=input("Press 1 to hire this cab or\nPress 2 to hire another cab")
+            hirecab=input("Press 1 to hire this cab or\nPress 2 to hire another cab:\n")
 
             while True:
                 try:
@@ -139,12 +140,12 @@ class cabs:
             else:
                 self.cabDetails()
 
-            k=input(('Enter any key to go to the main menu'))
+            k=input(('Enter any key to go to the main menu:'))
             if k=='a':
-                me=menus()
+                o.system('cls')
                 me.menu()
             else:
-                me=menus()
+                o.system('cls')
                 me.menu()
 
 class booking:
@@ -156,11 +157,13 @@ class booking:
     
     def hotels(self):
         hotels=['Avari Towers','Pearl Continental','Beach Luxury Hotel']
-        i='1'
+        i=1
         for h in hotels:
-            print(i+'.'+h)
-        c=input('Select which hotel do you wanna book or check details of\nOr press any other key to go back to the main menu')
+            print(str(i)+'.'+h)
+            i+=1
+        c=input('Select which hotel do you wanna book or check details of\nOr press any other key to go back to the main menu: ')
         self.hotelChoice=c
+        me=menus()
 
         if(self.hotelChoice=='1'):
             print("\t\t\t\tWELCOME TO AVARI TOWERS!\nThe highest rated 5 star hotel in Karachi!\nEnjoy the food, the gym, the pool, the garden, luxury suites and much more with Avari Towers")
@@ -193,10 +196,10 @@ class booking:
             
             k=input('Press any key to return to the main menu:')
             if k=='a':
-                me=menus()
+                o.system('cls')
                 me.menu()
             else:
-                me=menus()
+                o.system('cls')
                 me.menu()
 
         elif(self.hotelChoice=='2'):
@@ -230,10 +233,10 @@ class booking:
             
             k=input('Press any key to return to the main menu:')
             if k=='a':
-                me=menus()
+                o.system('cls')
                 me.menu()
             else:
-                me=menus()
+                o.system('cls')
                 me.menu()
 
         elif(self.hotelChoice=='3'):
@@ -261,11 +264,16 @@ class booking:
             
             k=input('Press any key to return to the main menu:')
             if k=='a':
-                me=menus()
+                o.system('cls')
                 me.menu()
             else:
-                me=menus()
+                o.system('cls')
                 me.menu()
+            
+        else:
+            o.system('cls')
+            me.menu()
+            
 
 
 class charges(customer,cabs,booking):
@@ -354,6 +362,7 @@ class menus():
                     o.system('cls')
                     self.menu()
             else:
+                o.system('cls')
                 self.menu()
             
         elif mainChoice=='2':
@@ -375,3 +384,30 @@ class menus():
             else:
                 o.system('cls')
                 self.menu()
+        
+        elif mainChoice=='4':
+            print('------------------GET YOUR RECEIPT------------------')
+            ch.printBill()
+            print('Your receipt has already been printed, it can be accessed from the file path')
+            print('To display the receipt here press 1 or press any other key to go back to the main menu:')
+            inchoice=input()
+            
+            if inchoice=='1':
+                ch.displayBill()
+                ret=input('press any key to return back to main menu: ')
+                if ret=='a':
+                    o.system('cls')
+                    self.menu()
+                else:
+                    o.system('cls')
+                    self.menu()
+            else:
+                self.menu()
+        else:
+            o.system('cls')
+            mm=ManageMenu()
+            mm.manageMenu()
+
+#main
+mm=ManageMenu()
+mm.manageMenu()
