@@ -2,12 +2,13 @@ import os as o
 
 class ManageMenu:
         def __init__(self):
-            pass
+            self.ch = charges()
+
         def manageMenu(self):
             inp=input('\n\n\n\n\n\n\n\n\n\t\t\t\tEnter your name to progress further:')
             o.system('cls')
             m=menus()
-            m.menu()
+            m.menu(self.ch)
 
 class customer:
     next_id=1000
@@ -268,7 +269,7 @@ class booking:
                 me.menu()
             else:
                 o.system('cls')
-                me.menu()
+                return
             
         else:
             o.system('cls')
@@ -283,13 +284,13 @@ class charges(customer,cabs,booking):
             booking.__init__(self)
     
     def printBill(self):
-        with open('receipt.txt','a+') as f:
-            f.write("\t\t\t\tPak Travelers")
-            f.write("--------------------------RECEIPT-------------------------------")
-            f.write("-----------------------------------------------------------------")
+        with open('receipt.txt','w+') as f:
+            f.write("\t\t\t          Pak Travelers\n\n")
+            f.write("--------------------------RECEIPT-------------------------------\n")
+            f.write("-----------------------------------------------------------------\n\n")
             
             f.write(f'Customer ID: {self.cusId}\n')
-            f.write(f'DESCRIPTION\t\tTOTAL\n')
+            f.write(f'DESCRIPTION\t\t\tTOTAL\n\n')
             f.write(f'Hotel Cost\t\t{self.hotelCost}\n')
             f.write(f'Cab travel cost\t\t{self.cabCost}\n')
             f.write('-------------------------------------------------------------\n')
@@ -307,13 +308,9 @@ class charges(customer,cabs,booking):
         print(contents)
 
 class menus():
-    def menu(self):
+    def menu(self,ch):
+        self.ch=ch
         ret=''
-
-        ch=charges()
-        c=cabs()
-        b=booking()
-        cust=customer()
 
         print('\t\t\t\t\t* Pak Travels By Wali And Umer *')
         print("--------------------------------------------------Main Menu---------------------------------------------------")
@@ -344,7 +341,7 @@ class menus():
             inChoice=input()
 
             if inChoice=='1':
-                cust.getDetails()
+                self.ch.getDetails()
                 ret=input('press any key to return back to main menu: ')
                 if ret=='a':
                     o.system('cls')
@@ -353,7 +350,7 @@ class menus():
                     o.system('cls')
                     self.menu()
             elif inChoice=='2':
-                cust.showDetails()
+                self.ch.showDetails()
                 ret=input('press any key to return back to main menu: ')
                 if ret=='a':
                     o.system('cls')
@@ -366,7 +363,7 @@ class menus():
                 self.menu()
             
         elif mainChoice=='2':
-            c.cabDetails()
+            self.ch.cabDetails()
             ret=input('press any key to return back to main menu: ')
             if ret=='a':
                 o.system('cls')
@@ -375,8 +372,8 @@ class menus():
                 o.system('cls')
                 self.menu()
 
-        elif mainChoice=='3':
-            b.hotels()
+        elif mainChoice=='3':   
+            self.ch.hotels()
             ret=input('press any key to return back to main menu: ')
             if ret=='a':
                 o.system('cls')
@@ -387,13 +384,13 @@ class menus():
         
         elif mainChoice=='4':
             print('------------------GET YOUR RECEIPT------------------')
-            ch.printBill()
+            self.ch.printBill()
             print('Your receipt has already been printed, it can be accessed from the file path')
             print('To display the receipt here press 1 or press any other key to go back to the main menu:')
             inchoice=input()
             
             if inchoice=='1':
-                ch.displayBill()
+                self.ch.displayBill()
                 ret=input('press any key to return back to main menu: ')
                 if ret=='a':
                     o.system('cls')
