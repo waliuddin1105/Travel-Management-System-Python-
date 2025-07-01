@@ -1,10 +1,13 @@
 import os as o
 
-def manageMenu():
-    pass
-def menu():
-    pass
-
+class ManageMenu:
+        def __init__(self):
+            pass
+        def manageMenu(self):
+            inp=input('\n\n\n\n\n\n\n\n\n\t\t\t\tEnter your name to progress further:')
+            o.system('cls')
+            m=menus()
+            m.menu()
 
 class customer:
     next_id=1000
@@ -23,7 +26,7 @@ class customer:
         self.name=n
         while True:
             try:
-                a=input('Enter Customer age:')
+                a=int(input('Enter Customer age:'))
                 self.age=a
                 break
             except ValueError as v:
@@ -54,6 +57,7 @@ class customer:
 
         with open('Old_customers.txt','a+') as f:
             f.write(f'Customer ID:{self.cusId}\nCustomer Name:{self.name}\nCustomer Age:{self.age}\nGender:{self.gender}\nMobile Number:{self.mobile}')   
+
 
     def showDetails(self):
         try:
@@ -115,7 +119,7 @@ class cabs:
             else:
                 self.cabDetails()
 
-        elif self.choice=='2':
+        elif self.choice==2:
             self.cabCost=self.kilometers*50
             print(f'Your tour will cost Rs.{self.cabCost} for a standard cab')
             hirecab=input("Press 1 to hire this cab or\nPress 2 to hire another cab")
@@ -137,9 +141,11 @@ class cabs:
 
             k=input(('Enter any key to go to the main menu'))
             if k=='a':
-                menu()
+                me=menus()
+                me.menu()
             else:
-                menu()
+                me=menus()
+                me.menu()
 
 class booking:
     def __init__(self):
@@ -187,9 +193,11 @@ class booking:
             
             k=input('Press any key to return to the main menu:')
             if k=='a':
-                menu()
+                me=menus()
+                me.menu()
             else:
-                menu()
+                me=menus()
+                me.menu()
 
         elif(self.hotelChoice=='2'):
             print("\t\t\t\tWELCOME TO PEARL CONTINENTAL!\nThe HIGHEST rated Luxury and event hotel in Karachi!\nEnjoy the ambiance, the feel, the restaurants, the pools , fitness centers, Family rooms and much more with Pearl Continental")
@@ -222,9 +230,11 @@ class booking:
             
             k=input('Press any key to return to the main menu:')
             if k=='a':
-                menu()
+                me=menus()
+                me.menu()
             else:
-                menu()
+                me=menus()
+                me.menu()
 
         elif(self.hotelChoice=='3'):
             print('\t\t\t\tWELCOME TO Beach Luxury Hotel!\nSet near the mangroves at the coast of the Arabian Sea, get ready for an adventure like never before at the Beach Luxury Hotel!')
@@ -251,26 +261,32 @@ class booking:
             
             k=input('Press any key to return to the main menu:')
             if k=='a':
-                menu()
+                me=menus()
+                me.menu()
             else:
-                menu()
+                me=menus()
+                me.menu()
 
 
 class charges(customer,cabs,booking):
     def __init__(self):
-        pass
+            customer.__init__(self)
+            cabs.__init__(self)
+            booking.__init__(self)
+    
     def printBill(self):
         with open('receipt.txt','a+') as f:
             f.write("\t\t\t\tPak Travelers")
             f.write("--------------------------RECEIPT-------------------------------")
             f.write("-----------------------------------------------------------------")
             
-            f.write('Customer ID:',self.cusId)
-            f.write('DESCRIPTION\t\t TOTAL')
-            f.write('Hotel Cost\t\t ',self.hotelCost)
-            f.write('Cab travel cost\t\t',self.cabCost)
-            f.write("-----------------------------------------------------------------")
-            f.write('Total Expenses\t\t',self.hotelCost+self.cabCost)
+            f.write(f'Customer ID: {self.cusId}\n')
+            f.write(f'DESCRIPTION\t\tTOTAL\n')
+            f.write(f'Hotel Cost\t\t{self.hotelCost}\n')
+            f.write(f'Cab travel cost\t\t{self.cabCost}\n')
+            f.write('-------------------------------------------------------------\n')
+            f.write(f'Total Expenses\t\t{self.hotelCost + self.cabCost}\n')
+
         
     def displayBill(self):
         try:
@@ -281,3 +297,81 @@ class charges(customer,cabs,booking):
             print('Error file not found')
             contents='none'
         print(contents)
+
+class menus():
+    def menu(self):
+        ret=''
+
+        ch=charges()
+        c=cabs()
+        b=booking()
+        cust=customer()
+
+        print('\t\t\t\t\t* Pak Travels By Wali And Umer *')
+        print("--------------------------------------------------Main Menu---------------------------------------------------")
+        print('\t\t\t\t    _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _')
+        print('\t\t\t\t   |\t\t\t\t\t   |')
+        print('\t\t\t\t   |\tCustomer Management -> 1\t   |')
+        print('\t\t\t\t   |\tCabs Management     -> 2\t   |')
+        print('\t\t\t\t   |\tBookings Management -> 3\t   |')
+        print('\t\t\t\t   |\tCharges & Bill      -> 4\t   |')
+        print('\t\t\t\t   |\tExit                -> 5\t   |')
+        print('\t\t\t\t   |\t\t\t\t\t   |')
+        print('\t\t\t\t   |_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|')
+        while True:
+            try:
+                mainChoice=input('Enter your choice:')
+                if mainChoice not in ['1','2','3','4','5']:
+                    raise Exception
+                else:
+                    break
+            except Exception:
+                print('Please enter a valid option!')
+        
+        if mainChoice=='1':
+            print('----------------------------------Customers----------------------------------')
+            print('1. Enter a new Customer')
+            print('2. See previous customers:')
+            print('Enter your choice\nOR press any key to return to main menu: ')
+            inChoice=input()
+
+            if inChoice=='1':
+                cust.getDetails()
+                ret=input('press any key to return back to main menu: ')
+                if ret=='a':
+                    o.system('cls')
+                    self.menu()
+                else:
+                    o.system('cls')
+                    self.menu()
+            elif inChoice=='2':
+                cust.showDetails()
+                ret=input('press any key to return back to main menu: ')
+                if ret=='a':
+                    o.system('cls')
+                    self.menu()
+                else:
+                    o.system('cls')
+                    self.menu()
+            else:
+                self.menu()
+            
+        elif mainChoice=='2':
+            c.cabDetails()
+            ret=input('press any key to return back to main menu: ')
+            if ret=='a':
+                o.system('cls')
+                self.menu()
+            else:
+                o.system('cls')
+                self.menu()
+
+        elif mainChoice=='3':
+            b.hotels()
+            ret=input('press any key to return back to main menu: ')
+            if ret=='a':
+                o.system('cls')
+                self.menu()
+            else:
+                o.system('cls')
+                self.menu()
